@@ -12,3 +12,4 @@ diffusers
 transformers
 accelerate
 python-multipart
+pyTelegramBotAPI
