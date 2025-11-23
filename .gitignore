@@ -1,1 +1,10 @@
-
+__pycache__/
+*.pyc
+bot_workdir/
+.env
+.vscode/
+*.log
+*.mp4
+*.png
+*.jpg
+.node_modules/
