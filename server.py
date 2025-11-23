@@ -1,5 +1,6 @@
 import io
 import os
+import telebot
 import time
 import uvicorn
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Request
@@ -8,6 +9,10 @@ from pydantic import BaseModel
 
 # IMPORTANT: Install required libs in Colab:
 # !pip install fastapi uvicorn[standard] diffusers transformers accelerate torch moviepy opencv-python
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+bot = telebot.TeleBot(BOT_TOKEN)
+app = FastAPI()
 
 app = FastAPI(title="VideoGen API")
 
@@ -113,3 +118,16 @@ async def generate(request: Request, type: str = Form(None), duration: int = For
 if __name__ == "__main__":
     # For local testing (not needed in Colab where you'll run via uvicorn)
     uvicorn.run(app, host="0.0.0.0", port=7860)
+
+
+@app.post("/webhook")
+async def webhook(request: Request):
+    data = await request.json()
+    update = telebot.types.Update.de_json(data)
+    bot.process_new_updates([update])
+    return {"status": "ok"}
+
+
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.reply_to(message, "Bot is running! Send photo or text to generate video.")
