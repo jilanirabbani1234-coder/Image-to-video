@@ -1,12 +1,13 @@
 import os
+from moviepy.editor import TextClip
+import tempfile
 
 def generate_from_text(prompt: str, duration: int = 5, output_dir: str = None) -> str:
     """
     Replace this with the real text->video pipeline (ModelScope/Zeroscope/Diffusion model).
     The stub below creates a simple text overlay video for placeholder/testing.
     """
-    from moviepy.editor import TextClip
-    import tempfile
+    
 
     w, h = 512, 512
     fps = 8
