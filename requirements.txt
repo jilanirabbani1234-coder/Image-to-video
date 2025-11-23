@@ -1,1 +1,13 @@
-
+pyrogram==2.0.17
+tgcrypto
+requests
+python-dotenv
+fastapi
+uvicorn[standard]
+moviepy
+opencv-python-headless
+Pillow
+torch
+diffusers
+transformers
+accelerate
